@@ -6,7 +6,7 @@ export default function LoginPage() {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
-    const {setUserInfo} = useContext(UserContext);
+    const {setUserInfo} = useContext(UserContext); //context will be set when the user id logged in
 
     async function login(ev) {
         ev.preventDefault();
@@ -14,16 +14,16 @@ export default function LoginPage() {
             method:'POST',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' },
-            credentials: 'include', //taking cookie from respnse header and incuding it in request header too
+            credentials: 'include', //taking cookie from response header and including it in request header too so that we can use it for setting user context
         });
 
-        if(response.ok) {
+        if(response.status === 200) {
             response.json().then(userInfo => {
-                setUserInfo(userInfo);
+                setUserInfo(userInfo); //setting the userContext
                 setRedirect(true);
             })
         } else {
-            alert('wrong credentials');
+            alert('Wrong credentials check your Username or Password');
         }
     }
 

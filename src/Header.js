@@ -1,5 +1,5 @@
 import { useEffect, useState , useContext} from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; //always remember when u are using router don't go for anchor tag go for LINK
 import { UserContext } from "./UserContext";
 
 export default function Header() {
@@ -7,14 +7,14 @@ export default function Header() {
     useEffect(() => {
         fetch('http://localhost:4000/profile', { credentials: 'include', }).then(response => {
             response.json().then(userInfo => {
-                setUserInfo(userInfo);
+                setUserInfo(userInfo); //joh logged in hai i.e jiska token hai uss user ka context set kardo 
             });
         });
     }, []);
 
     function logout() {
         fetch('http://localhost:4000/logout', {
-            credentials: 'include',
+            credentials: 'include', 
             method: 'POST',
         });
         setUserInfo(null);
@@ -26,8 +26,9 @@ export default function Header() {
     return (
         <header>
             <Link to="/" className="logo"> MyBlog</Link>
+
             <nav>
-                {username && (
+                {username && (  
                     <>
                     <span> Hello {username} </span>
                         <Link to='/create'> Create new Post</Link>

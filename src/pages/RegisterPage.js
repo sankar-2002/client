@@ -5,10 +5,11 @@ export default function RegisterPage() {
     const [password, setPassword] = useState('');
 
     async function register(ev) {
-        ev.preventDefault();
+        ev.preventDefault(); //cancels the event if it is cancellable
+        
         const response = await fetch('http://localhost:4000/register', {
             method: 'POST',
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ username, password }), //sending in the form of JSON
             headers: {'Content-Type':'application/json'},
         });
 
@@ -16,9 +17,9 @@ export default function RegisterPage() {
         // which is further used in server code(index.js) and added to MongoDB
 
         if(response.status === 200) {
-            alert('registration successful');
+            alert('Registration Successful');
         } else {
-            alert('registration failed');
+            alert('Registration Failed');
         }
     }
 
