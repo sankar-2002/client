@@ -16,7 +16,7 @@ export default function RegisterPage() {
         // which is further used in server code(index.js) and added to MongoDB
 
         if(response.status === 200) {
-            alert('registraton successful');
+            alert('registration successful');
         } else {
             alert('registration failed');
         }

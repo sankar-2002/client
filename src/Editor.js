@@ -1,0 +1,20 @@
+import ReactQuill from "react-quill";
+
+export default function Editor({value, onChange}) {
+    //modules and format from react-quill docs(yarnpkg.com)
+
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, false] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image'],
+            ['clean']
+        ],
+    };
+
+    return (
+        <ReactQuill value={value} modules={modules}
+                onChange={onChange} theme={'snow'} />
+    );
+}

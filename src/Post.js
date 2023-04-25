@@ -1,22 +1,27 @@
-export default function Post() {
+import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
+
+export default function Post({ _id,title, summary, cover, content, createdAt, author }) {
     return (
         <div className="post">
-
             <div className="image">
-                <img src="https://video-images.vice.com/articles/6435c4de2512482057614f4c/lede/1681246231514-screen-shot-2023-04-11-at-44958-pm.png?crop=1xw:0.8468xh;0xw,0xh&resize=500:*" alt="programmer" />
+                <Link to={`/post/${_id}`}>
+                    <img src={'http://localhost:4000/' + cover} alt="programmer" />
+                </Link>
             </div>
 
             <div className="texts">
-                <h2>‘Overemployed’ Hustlers Exploit ChatGPT To Take On Even More Full-Time Jobs
-                </h2>
+                <Link to={`/post/${_id}`}>
+                    <h2>{title} </h2>
+                </Link>
                 <p className="info">
-                    <a className="author"> David Paszko</a>
-                    <time>2023-01-06 16:45</time>
+                    <a className="author">{author.username}</a>
+                    <time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time>
                 </p>
-                <p className="summary">"ChatGPT does like 80 percent of my job," said one worker. Another is holding the line at four robot-performed jobs. "Five would be overkill," he said.</p>
+                <p className="summary">{summary}</p>
             </div>
 
-        </div>
+        </div >
 
     );
 }
